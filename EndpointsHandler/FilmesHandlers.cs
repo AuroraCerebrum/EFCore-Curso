@@ -12,13 +12,13 @@ public static class FilmesHandlers
     {
         return context.Filmes
             .Where(filme => filme.Id == id)
-            .Include(filme => filme.Diretor).ToList();
+            .Include(filme => filme.Diretores).ToList();
     }
 
     public static List<Filme> GetFilmes(Context context)
     {
         return context.Filmes
-                .Include(filme => filme.Diretor)
+                .Include(filme => filme.Diretores)
                 //.OrderBy(filme => filme.Ano)
                 .OrderByDescending(filme => filme.Ano)
                 .ThenBy(filme => filme.Titulo)
@@ -31,14 +31,14 @@ public static class FilmesHandlers
         return context.Filmes
                 .Where(filmes =>
                     EF.Functions.Like(filmes.Titulo, $"%{titulo}%"))
-                .Include(filmes => filmes.Diretor).ToList();
+                .Include(filmes => filmes.Diretores).ToList();
     }
 
     public static List<Filme> GetFilmeContainsByTitulo(string titulo, Context context)
     {
         return context.Filmes
             .Where(filme => filme.Titulo.Contains(titulo))
-            .Include(filme => filme.Diretor).ToList();
+            .Include(filme => filme.Diretores).ToList();
 
     }
 
